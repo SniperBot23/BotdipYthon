@@ -2,14 +2,10 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copia i file dei requisiti prima per sfruttare la cache di Docker
 COPY requirements.txt .
-
-# Installa le dipendenze
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia tutto il resto del codice
 COPY . .
 
-
-CMD ["python", "trading_bot.py"]   
+CMD ["python", "trading_bot.py"]
